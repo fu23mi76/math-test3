@@ -9,43 +9,61 @@
 <body>
     <div class="container">
         <h1>高校数学 計算演習</h1>
-        <p>挑戦したい単元を選んでください。（各10問ランダム出題、6択形式）</p>
+        <p>挑戦したい単元を選んでください。（6択形式）</p>
+        
+        <div class="settings-panel">
+            <strong>⚙️ テスト設定</strong>
+            <div class="setting-item">
+                <span>出題数：</span>
+                <label><input type="radio" name="qCount" value="5"> 5問</label>
+                <label><input type="radio" name="qCount" value="10" checked> 10問</label>
+            </div>
+        </div>
         
         <div class="subject-list">
             
             <details class="subject-folder">
                 <summary>数学I：2次関数</summary>
                 <div class="unit-grid">
-                    <button onclick="location.href='quiz.html?unit=math1_quad_graph'">グラフと頂点</button>
-                    <button onclick="location.href='quiz.html?unit=math1_quad_maxmin'">最大・最小</button>
-                    <button onclick="location.href='quiz.html?unit=math1_quad_eq'">2次方程式・不等式</button>
+                    <button onclick="startQuiz('math1_quad_graph')">グラフと頂点</button>
+                    <button onclick="startQuiz('math1_quad_maxmin')">最大・最小</button>
+                    <button onclick="startQuiz('math1_quad_eq')">2次方程式・不等式</button>
                 </div>
             </details>
 
             <details class="subject-folder">
                 <summary>数学A：確率</summary>
                 <div class="unit-grid">
-                    <button onclick="location.href='quiz.html?unit=mathA_prob_basic'">確率の基本</button>
-                    <button onclick="location.href='quiz.html?unit=mathA_prob_cond'">条件付き確率</button>
+                    <button onclick="startQuiz('mathA_prob_basic')">確率の基本</button>
+                    <button onclick="startQuiz('mathA_prob_cond')">条件付き確率</button>
                 </div>
             </details>
 
             <details class="subject-folder">
                 <summary>数学Ⅱ：複素数と方程式</summary>
                 <div class="unit-grid">
-                    <button onclick="location.href='quiz.html?unit=math2_complex_calc'">複素数の演算</button>
-                    </div>
+                    <button onclick="startQuiz('math2_complex_calc')">複素数の演算</button>
+                </div>
             </details>
 
             <details class="subject-folder">
                 <summary>数学B/C：ベクトル</summary>
                 <div class="unit-grid">
-                    <button onclick="location.href='quiz.html?unit=mathB_vector_plane'">平面ベクトル</button>
-                    <button onclick="location.href='quiz.html?unit=mathB_vector_space'">空間ベクトル</button>
+                    <button onclick="startQuiz('mathB_vector_plane')">平面ベクトル</button>
+                    <button onclick="startQuiz('mathB_vector_space')">空間ベクトル</button>
                 </div>
             </details>
 
         </div>
     </div>
+
+    <script>
+        function startQuiz(unitKey) {
+            // 選ばれている出題数（5 または 10）を取得
+            const selectedCount = document.querySelector('input[name="qCount"]:checked').value;
+            // URLに unit と count の両方のパラメータをつけて遷移
+            location.href = `quiz.html?unit=${unitKey}&count=${selectedCount}`;
+        }
+    </script>
 </body>
 </html>
