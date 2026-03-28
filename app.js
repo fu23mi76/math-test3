@@ -12,12 +12,10 @@ function shuffleArray(array) {
 
 // ページ読み込み時の処理
 window.onload = function() {
-    // URLからパラメータを取得 (?unit=xxx&count=yy)
     const urlParams = new URLSearchParams(window.location.search);
     const unitKey = urlParams.get('unit');
     const countParam = urlParams.get('count');
     
-    // countパラメータがあれば数値に変換、なければデフォルトで10問とする
     const maxQuestions = countParam ? parseInt(countParam, 10) : 10;
 
     if (unitKey && questionBank[unitKey]) {
@@ -27,7 +25,6 @@ window.onload = function() {
         const allQuestions = [...unitData.questions];
         shuffleArray(allQuestions);
         
-        // 取得した出題数（maxQuestions）の数だけスライスする
         const selectedQuestions = allQuestions.slice(0, maxQuestions);
 
         currentQuizData = selectedQuestions.map(q => {
@@ -62,7 +59,6 @@ function renderQuestions() {
                 <div class="choice-grid" id="choices-${qIndex}">
         `;
 
-        // シャッフル済みの選択肢を描画
         item.shuffledChoices.forEach((choiceObj, cIndex) => {
             html += `
                 <button type="button" class="choice-btn" id="q${qIndex}-c${cIndex}" onclick="selectAnswer(${qIndex}, ${cIndex})">
@@ -80,7 +76,6 @@ function renderQuestions() {
 
     container.innerHTML = html;
     
-    // 問題が1件以上ある場合のみ「採点する」ボタンを表示
     if (currentQuizData.length > 0) {
         document.getElementById('submit-btn').style.display = "block";
     }
