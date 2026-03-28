@@ -1,5 +1,5 @@
-let currentQuizData = []; 
-let userAnswers = []; 
+let currentQuizData = [];
+let userAnswers = [];
 
 // 配列をシャッフルする関数
 function shuffleArray(array) {
@@ -117,55 +117,4 @@ function calculateScore() {
 
     currentQuizData.forEach((item, qIndex) => {
         const chosenIndex = userAnswers[qIndex];
-        const isCorrect = item.shuffledChoices[chosenIndex].isCorrect;
-        
-        const userAnswerText = item.shuffledChoices[chosenIndex].text;
-        const correctAnswerText = item.shuffledChoices.find(c => c.isCorrect).text;
-
-        const explanationBlock = `
-            <details class="explanation-details">
-                <summary>解説を読む</summary>
-                <div class="explanation-content">
-                    ${item.explanation ? item.explanation : "解説が登録されていません。"}
-                </div>
-            </details>
-        `;
-
-        const resultItemHTML = `
-            <div class="result-item ${isCorrect ? 'correct-item' : 'incorrect-item'}">
-                <p><strong>問${qIndex + 1}.</strong> ${item.q}</p>
-                <p class="answer-compare">
-                    あなたの解答: ${userAnswerText}
-                    ${!isCorrect ? ` <br><span class="correct-text">正答: ${correctAnswerText}</span>` : ''}
-                </p>
-                ${explanationBlock}
-            </div>
-        `;
-
-        if (isCorrect) {
-            score++;
-            correctHTML += resultItemHTML;
-        } else {
-            incorrectHTML += resultItemHTML;
-        }
-    });
-
-    correctHTML += "</div>";
-    incorrectHTML += "</div>";
-
-    if (score === 0) correctHTML = "<div class='result-section'><h3>⭕️ 正解した問題</h3><p>ありませんでした。解説を読んで復習しましょう。</p></div>";
-    if (score === currentQuizData.length) incorrectHTML = "<div class='result-section'><h3>❌ 間違えた問題</h3><p>ありませんでした。素晴らしいです！</p></div>";
-
-    const resultArea = document.getElementById('result-area');
-    resultArea.innerHTML = `
-        <h2>採点結果: ${score} / ${currentQuizData.length} 問 正解</h2>
-        ${incorrectHTML}
-        ${correctHTML}
-    `;
-
-    document.getElementById('submit-btn').style.display = "none";
-
-    if (window.MathJax) {
-        MathJax.typesetPromise([resultArea]);
-    }
-}
+        const isCorrect = item.shuffled
