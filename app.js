@@ -12,19 +12,24 @@ function shuffleArray(array) {
 
 // ページ読み込み時の処理
 window.onload = function() {
+    // URLからパラメータを取得 (?unit=xxx&count=yy)
     const urlParams = new URLSearchParams(window.location.search);
     const unitKey = urlParams.get('unit');
+    const countParam = urlParams.get('count');
+    
+    // countパラメータがあれば数値に変換、なければデフォルトで10問とする
+    const maxQuestions = countParam ? parseInt(countParam, 10) : 10;
 
     if (unitKey && questionBank[unitKey]) {
         const unitData = questionBank[unitKey];
         document.getElementById('unit-title').innerText = unitData.title + " テスト";
         
-        // 問題をシャッフルして最大10問抽出
         const allQuestions = [...unitData.questions];
         shuffleArray(allQuestions);
-        const selectedQuestions = allQuestions.slice(0, 10);
+        
+        // 取得した出題数（maxQuestions）の数だけスライスする
+        const selectedQuestions = allQuestions.slice(0, maxQuestions);
 
-        // 各問題の「選択肢」をシャッフルし、正誤判定フラグを持たせた新しい配列を作る
         currentQuizData = selectedQuestions.map(q => {
             let choiceObjects = q.choices.map((choiceText, index) => {
                 return { text: choiceText, isCorrect: (index === q.a) };
@@ -38,9 +43,7 @@ window.onload = function() {
             };
         });
 
-        // ユーザー解答配列を初期化
         userAnswers = new Array(currentQuizData.length).fill(-1);
-
         renderQuestions();
     } else {
         document.getElementById('unit-title').innerText = "単元が見つかりません";
