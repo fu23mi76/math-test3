@@ -28,6 +28,51 @@ h2 {
     padding-bottom: 10px;
 }
 
+/* --- テスト設定パネル --- */
+.settings-panel {
+    background-color: #e8f4f8;
+    border: 1px solid #bce0fd;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px; /* PCでは横並び */
+}
+
+.settings-panel strong {
+    color: #2980b9;
+    font-size: 1.1em;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.setting-item label {
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #34495e;
+}
+
+/* ラジオボタンを少し大きくする */
+.setting-item input[type="radio"] {
+    transform: scale(1.3);
+    margin-right: 5px;
+}
+
+/* スマホなど画面が小さい時は縦並びにする */
+@media (max-width: 600px) {
+    .settings-panel {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
 .unit-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
