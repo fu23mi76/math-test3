@@ -122,7 +122,8 @@ const questionBank = {
                 a: 1,
                 explanation: "乗法公式 $(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$ を使います。<br>$1^3 + 3 \\cdot 1^2 \\cdot i + 3 \\cdot 1 \\cdot i^2 + i^3 = 1 + 3i + 3(-1) - i = -2 + 2i$"
             }
-        ],
+        ]
+    },
 
     // --- 数学B/C：ベクトル ---
     "mathB_vector_plane": {
