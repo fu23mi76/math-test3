@@ -1,5 +1,5 @@
-let currentQuizData = []; // シャッフル後の選択肢などを含めた出題用データ
-let userAnswers = []; // ユーザーが選択したインデックスを保持
+let currentQuizData = []; 
+let userAnswers = []; 
 
 // 配列をシャッフルする関数
 function shuffleArray(array) {
@@ -26,11 +26,9 @@ window.onload = function() {
 
         // 各問題の「選択肢」をシャッフルし、正誤判定フラグを持たせた新しい配列を作る
         currentQuizData = selectedQuestions.map(q => {
-            // 選択肢のオブジェクト配列を作成（テキストと、それが正解かどうか）
             let choiceObjects = q.choices.map((choiceText, index) => {
                 return { text: choiceText, isCorrect: (index === q.a) };
             });
-            // 選択肢をシャッフル
             shuffleArray(choiceObjects);
             
             return {
@@ -78,7 +76,11 @@ function renderQuestions() {
     });
 
     container.innerHTML = html;
-    document.getElementById('submit-btn').style.display = "block";
+    
+    // 修正箇所：問題が1件以上ある場合のみ「採点する」ボタンを表示
+    if (currentQuizData.length > 0) {
+        document.getElementById('submit-btn').style.display = "block";
+    }
 
     if (window.MathJax) {
         MathJax.typesetPromise();
@@ -115,7 +117,6 @@ function calculateScore() {
         const isCorrect = item.shuffledChoices[chosenIndex].isCorrect;
         
         const userAnswerText = item.shuffledChoices[chosenIndex].text;
-        // 正解のテキストを探す
         const correctAnswerText = item.shuffledChoices.find(c => c.isCorrect).text;
 
         const explanationBlock = `
