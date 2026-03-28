@@ -11,12 +11,33 @@
         <h1>高校数学 計算演習</h1>
         <p>挑戦したい単元を選んでください。（各10問ランダム出題、6択形式）</p>
         
-        <div class="unit-grid">
-            <button onclick="location.href='quiz.html?unit=math1_quadratic'">数学I: 2次関数</button>
-            <button onclick="location.href='quiz.html?unit=mathA_prob'">数学A: 確率</button>
-            <button onclick="location.href='quiz.html?unit=mathB_vector'">数学B/C: 平面・空間ベクトル</button>
-            <button onclick="location.href='quiz.html?unit=math3_limit'">数学III: 極限</button>
-        </div>
+        <div class="subject-list">
+            
+            <details class="subject-folder" open> <summary>数学I：2次関数</summary>
+                <div class="unit-grid">
+                    <button onclick="location.href='quiz.html?unit=math1_quad_graph'">グラフと頂点</button>
+                    <button onclick="location.href='quiz.html?unit=math1_quad_maxmin'">最大・最小</button>
+                    <button onclick="location.href='quiz.html?unit=math1_quad_eq'">2次方程式・不等式</button>
+                </div>
+            </details>
+
+            <details class="subject-folder">
+                <summary>数学A：確率</summary>
+                <div class="unit-grid">
+                    <button onclick="location.href='quiz.html?unit=mathA_prob_basic'">確率の基本</button>
+                    <button onclick="location.href='quiz.html?unit=mathA_prob_cond'">条件付き確率</button>
+                </div>
+            </details>
+
+            <details class="subject-folder">
+                <summary>数学B/C：ベクトル</summary>
+                <div class="unit-grid">
+                    <button onclick="location.href='quiz.html?unit=mathB_vector_plane'">平面ベクトル</button>
+                    <button onclick="location.href='quiz.html?unit=mathB_vector_space'">空間ベクトル</button>
+                </div>
+            </details>
+
+            </div>
     </div>
 </body>
 </html>
