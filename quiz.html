@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBTテスト実行中</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="unit-title">テスト読込中...</h1>
+        <div id="quiz-container">
+            </div>
+        <button id="submit-btn" style="display:none;" onclick="calculateScore()">採点する</button>
+        <div id="result-area"></div>
+        <br>
+        <button class="back-btn" onclick="location.href='index.html'">トップへ戻る</button>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
